@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Breadfast Product Label</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Breadfast Logo" class="logo" />
+
+    <h2>Breadfast Product Label</h2>
+
+    <div>
+      <input type="text" id="productBarcode" placeholder="Product Barcode" />
+      <input type="number" id="productionDay" placeholder="Day (DD)" min="1" max="31" />
+      <input type="number" id="productionMonth" placeholder="Month (MM)" min="1" max="12" />
+      <input type="number" id="productionYear" placeholder="Year (YYYY)" />
+      <input type="number" id="shelfLife" placeholder="Shelf Life (Months)" />
+    </div>
+
+    <div>
+      <button onclick="fetchProduct()">Search</button>
+      <button onclick="window.print()">Print</button>
+      <button class="addPtn" onclick="window.open('add-product.html', '_blank')">Add New Product</button>
+      
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

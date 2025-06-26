@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "strong-maker-463921-i6",
+  "private_key_id": "12133c58be68c1a31efa10bcb6766d91835d5493",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC0NIXftSyfI4nE\n/yPhHYdiBxOH15+QahNp2ndo4b7klBPBA03mRFOtaJkVx1LCBauzUA5z1le7VeJn\nptURQYzn5Q3+s5AhG3FHMRkRC1xGiON5esTUeXMFbt8HPCHMmmIxpYb4Vj/fTq5M\nHaGreucu+pHSQNq0WB2jg1S4/SdeL1dN135n/o/IiKLtv5/V2VizN6zL/oOukdzi\n+7i6OLNqeT+U44tBBRck2HFWrgYHsZ1vE2UCVh18OY467byX2Cz8F1m2DJ8BQjDC\niU8Sb2GhY0KUY2mjozdBtXR8HclADZU3pMFFMfGHQ0cYplvr2AJ1UwYA/o3tCPUC\n0Yh1miE9AgMBAAECggEAGWd6JAJvivPAnVP2o+q8xjYHK9Ra+0no+LhCszd36NNz\nQXeMyNSDE2Q2iJpz8URJY1r63put/IvsAf7D9M3P5nUlFu4LeI9c1dN3HC8E0DDG\nGL8U9ns0muR5bpSskyKEi0kxkNrf4ERAUByxSPJnmvjaC9D2xAvUCdQe4oFVxnIb\nc/6QbvP1mjl25Ryy46gyaXNDKz4nuevvNn1HSGAxT9IJ08vO1gI79syFO6SYgSub\nf8RGiltgrDzU1/qeMgkZkJhMcknTruQt2v4L+tmQUxzqMJOAgsqEJ3aMo1cccQ9e\nW2dOLkM4BeKZD6b1opodjQtp875BkGGDhw6XY9msJQKBgQDhkB0tIMfkCGTfKPyi\n87mdStJ8uGVqQmeOmWWcV6vt6XF2Bdp0ZzVm7UG+CgdztRODpFvcUzIFWDbUoWrD\nGj6obz6Mx+BQDDI7xKPdi8I1TmS+bgS7LBZob9/8cqCA4XJfidp7m7oEWS4LiqFH\nckE9ZrbP8/Ltop0AKezUDJ1nAwKBgQDMhY/bJFhgfSNtzOtU4EPcuSzImTpPF41x\njH01Bwr3GiN6Xz+MAgrRvmCyBTHi7wCA1HLrOeh26jJMZ7vwTQvFgfYPRrjnHPdx\nHyY6HJe/4a/e6OSYSr6S+DfxSwb5EA6+O7kasqgal3EPfboCZLQb5DeLuMAAM0ho\np0qo+17CvwKBgHNC4jXaR2q2A12poxddtd6zikWjMGeRETvkFPFEN532KT1nFk9f\nIgG7gVmr5EzzHcqqJSq79JaYkkQrS9PwyE3nsq3bwTsGUHEMNbQTI6V7rq1EqPRA\nPh8V8/4bUPsquPgrCFMbq31nWMkbCPjqYH4Qy6AOB3f5HYMk6VkeLRyjAoGAQdDR\nZHIjxpk+p30EVkH9VLB6iutUalNn/xx4xnHHw5EzzZONPZ8CoFCliWRGk4LaJJs5\niB0QhAQFv7S6NDB3E04pQu09X5JgxpSBlr3Qz7zu/crwlVmoTl92kT3VtpzGQc2y\nWbcYhcYqahPJoi+KDle40EvZ7baTHKqJSivqaL0CgYAD/hzKjsuGCDcaui+ol54H\nGCwSPSlbhf8nnczrjIRR4S5yWdeKFDEulNfCfpjruK9VibD9QlvzAa0neN49yiIK\nsZ+J9nXTATFL34OuQOjBIfWaQQTdnNnaZzcTND7Pdx17Ba4Kc822M7vFESSJ7NCt\nHFdCK8gIzkSAr331pOBZOw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "excel-web-app@strong-maker-463921-i6.iam.gserviceaccount.com",
+  "client_id": "113478005862096547143",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/excel-web-app%40strong-maker-463921-i6.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

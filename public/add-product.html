@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 30px;
+      text-align: center;
+    }
+    input, button {
+      margin: 10px;
+      padding: 12px;
+      width: 300px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #008cba;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #006e96;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Add New Product</h1>
+
+  <input type="text" id="ID" placeholder="Internal ID"><br>
+  <input type="text" id="Barcode" placeholder="Barcode"><br>
+  <input type="text" id="Name" placeholder="Product Name"><br>
+  <input type="text" id="Category" placeholder="Category"><br>
+  <input type="text" id="Unit" placeholder="Items per container"><br>
+  <input type="text" id="Layers" placeholder="Layers per Pallet"><br>
+  <input type="text" id="CartoonsPerLayer" placeholder="Cartons per Layer"><br>
+  <input type="text" id="TotalCartons" placeholder="Total Cartons"><br>
+
+  <button onclick="addProduct()">Add Product</button>
+
+  <div id="message"></div>
+
+  <script>
+    async function addProduct() {
+      const product = {
+        ID: document.getElementById('ID').value,
+        Barcode: document.getElementById('Barcode').value,
+        Name: document.getElementById('Name').value,
+        Category: document.getElementById('Category').value,
+        Unit: document.getElementById('Unit').value,
+        Layers: document.getElementById('Layers').value,
+        CartoonsPerLayer: document.getElementById('CartoonsPerLayer').value,
+        TotalCartons: document.getElementById('TotalCartons').value
+      };
+
+      const res = await fetch('/api/product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+      });
+
+      const msg = document.getElementById('message');
+      const data = await res.json();
+
+      if (res.ok) {
+        msg.style.color = 'green';
+        msg.innerText = data.message;
+      } else {
+        msg.style.color = 'red';
+        msg.innerText = data.message || 'Something went wrong.';
+      }
+    }
+  </script>
+
+</body>
+</html>
