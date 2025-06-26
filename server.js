@@ -61,38 +61,65 @@ app.get('/api/product/:barcode', async (req, res) => {
 
 
 // POST new product
+
 app.post('/api/product', async (req, res) => {
   const newProduct = req.body;
   const client = await auth.getClient();
   const sheets = google.sheets({ version: 'v4', auth: client });
 
-  const values = [[
-    newProduct.ID || '',
-    newProduct.Barcode || '',
-    newProduct.Name || '',
-    newProduct.Category || '',
-    newProduct.Unit || '',
-    newProduct.Layers || '',
-    newProduct.CartoonsPerLayer || ''
-    
-  ]];
-
   try {
-    await sheets.spreadsheets.values.append({
+    const read = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A1`,
-      valueInputOption: 'RAW',
-      insertDataOption: 'INSERT_ROWS',
-      requestBody: { values },
+      range: `${SHEET_NAME}`
     });
 
-    res.status(200).json({ message: '✅ Product added successfully!' });
+    const rows = read.data.values || [];
+
+    let targetRow = null;
+    for (let i = 0; i < rows.length; i++) {
+      if (!rows[i][1] || rows[i][1].trim() === '') {
+        targetRow = i + 2;
+        break;
+      }
+    }
+
+    const values = [[
+      newProduct.ID || '',
+      newProduct.Barcode || '',
+      newProduct.Name || '',
+      newProduct.Category || '',
+      newProduct.Unit || '',
+      newProduct.Layers || '',
+      newProduct.CartoonsPerLayer || ''
+      
+    ]];
+
+    if (!targetRow) {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A1`,
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS',
+        requestBody: { values },
+      });
+    } else {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${SHEET_NAME}!A${targetRow}:H${targetRow}`,
+        valueInputOption: 'RAW',
+        requestBody: { values },
+      });
+    }
+
+    res.status(200).json({ message: '✅ Product added at correct position!' });
   } catch (err) {
-    console.error(err);
+
     res.status(500).json({ message: '❌ Error writing to sheet' });
+    
     console.error(err);
   }
 });
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
