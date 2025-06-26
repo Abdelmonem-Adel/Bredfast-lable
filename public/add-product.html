@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #EDFFEF;
       padding: 30px;
       text-align: center;
     }
@@ -19,12 +19,15 @@
       border-radius: 8px;
     }
     button {
-      background-color: #008cba;
-      color: white;
+       background-color: #AA0082;
+      color: #fff;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 120px;
     }
     button:hover {
-      background-color: #006e96;
+      background-color: #fff;
+      color: #AA0082;
     }
     #message {
       margin-top: 20px;
@@ -43,13 +46,26 @@
   <input type="text" id="Unit" placeholder="Items per container"><br>
   <input type="text" id="Layers" placeholder="Layers per Pallet"><br>
   <input type="text" id="CartoonsPerLayer" placeholder="Cartons per Layer"><br>
-  <input type="text" id="TotalCartons" placeholder="Total Cartons"><br>
+  
 
   <button onclick="addProduct()">Add Product</button>
 
   <div id="message"></div>
 
   <script>
+
+    function clearInputs() {
+      document.getElementById('idInput').value = '';
+    document.getElementById('barcodeInput').value = '';
+    document.getElementById('nameInput').value = '';
+    document.getElementById('categoryInput').value = '';
+    document.getElementById('unitInput').value = '';
+    document.getElementById('layersInput').value = '';
+    document.getElementById('cartoonsInput').value = '';
+    }
+    
+
+
     async function addProduct() {
       const product = {
         ID: document.getElementById('ID').value,
@@ -59,7 +75,7 @@
         Unit: document.getElementById('Unit').value,
         Layers: document.getElementById('Layers').value,
         CartoonsPerLayer: document.getElementById('CartoonsPerLayer').value,
-        TotalCartons: document.getElementById('TotalCartons').value
+        
       };
 
       const res = await fetch('/api/product', {
@@ -74,6 +90,10 @@
       if (res.ok) {
         msg.style.color = 'green';
         msg.innerText = data.message;
+
+        clearInputs()
+
+
       } else {
         msg.style.color = 'red';
         msg.innerText = data.message || 'Something went wrong.';

@@ -5,7 +5,7 @@ let oovDate = null;
 
 
 
-function clearInputs() {
+  function clearInputs() {
   document.getElementById('productBarcode').value = '';
     document.getElementById('productionDay').value = '';
     document.getElementById('productionMonth').value = '';

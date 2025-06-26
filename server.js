@@ -73,8 +73,8 @@ app.post('/api/product', async (req, res) => {
     newProduct.Category || '',
     newProduct.Unit || '',
     newProduct.Layers || '',
-    newProduct.CartoonsPerLayer || '',
-    newProduct.UnitsPerPallet || ''
+    newProduct.CartoonsPerLayer || ''
+    
   ]];
 
   try {
