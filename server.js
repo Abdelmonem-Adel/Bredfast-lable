@@ -76,7 +76,7 @@ app.post('/api/product', async (req, res) => {
     const rows = read.data.values || [];
 
     const lastRow = rows.findLastIndex(row => row[1] && row[1].toString().trim() !== '');
-    const targetRow = lastRow + 3;
+    const targetRow = lastRow + 2;
 
     const values = [[
       newProduct.ID || '',
