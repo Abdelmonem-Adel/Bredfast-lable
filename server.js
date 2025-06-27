@@ -1,20 +1,21 @@
+// ✅ server.js (Ready for Railway Deployment with Google Sheets integration)
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { google } = require('googleapis');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
 
-// Google Sheets API
-const SPREADSHEET_ID = '1IAc-W2Qp-50WY_8txVR6CcrucEVwyvpcn6ymrlSoYW4';
-const SHEET_NAME = 'Palletizing-Standard'; 
-const KEY_PATH = path.join(__dirname, 'key.json');
+// ✅ Google Sheets Configuration
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const SHEET_NAME = process.env.SHEET_NAME;
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: KEY_PATH,
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
@@ -26,7 +27,6 @@ async function getSheetData() {
     spreadsheetId: SPREADSHEET_ID,
     range: `${SHEET_NAME}`,
   });
-
 
   const rows = res.data.values;
   if (!rows || rows.length === 0) return [];
@@ -43,7 +43,7 @@ async function getSheetData() {
   return data;
 }
 
-// GET product by Barcode
+// ✅ GET product by Barcode
 app.get('/api/product/:barcode', async (req, res) => {
   const barcode = req.params.barcode;
   try {
@@ -59,9 +59,7 @@ app.get('/api/product/:barcode', async (req, res) => {
   }
 });
 
-
-// POST new product
-
+// ✅ POST new product
 app.post('/api/product', async (req, res) => {
   const newProduct = req.body;
   const client = await auth.getClient();
@@ -70,13 +68,20 @@ app.post('/api/product', async (req, res) => {
   try {
     const read = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}`
+      range: `${SHEET_NAME}`,
     });
 
     const rows = read.data.values || [];
 
-    const lastRow = rows.findLastIndex(row => row[1] && row[1].toString().trim() !== '');
-    const targetRow = lastRow + 2;
+    let lastRow = -1;
+    for (let i = rows.length - 1; i >= 0; i--) {
+      if (rows[i][1] && rows[i][1].toString().trim() !== '') {
+        lastRow = i;
+        break;
+      }
+    }
+
+    const targetRow = lastRow + 2; // Because rows are 1-indexed in Sheets
 
     const values = [[
       newProduct.ID || '',
@@ -85,11 +90,11 @@ app.post('/api/product', async (req, res) => {
       newProduct.Category || '',
       newProduct.Unit || '',
       newProduct.Layers || '',
-      newProduct.CartoonsPerLayer || ''
-      
+      newProduct.CartoonsPerLayer || '',
+      newProduct.TotalCartons || ''
     ]];
 
-    if (!targetRow) {
+    if (lastRow === -1) {
       await sheets.spreadsheets.values.append({
         spreadsheetId: SPREADSHEET_ID,
         range: `${SHEET_NAME}!A1`,
@@ -106,17 +111,14 @@ app.post('/api/product', async (req, res) => {
       });
     }
 
-    res.status(200).json({ message: '✅ Product added at correct position!' });
+    res.status(200).json({ message: '✅ Product added successfully' });
   } catch (err) {
-
-    res.status(500).json({ message: '❌ Error writing to sheet' });
-    
     console.error(err);
+    res.status(500).json({ message: '❌ Error writing to sheet' });
   }
 });
 
-
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
