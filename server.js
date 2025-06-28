@@ -91,7 +91,6 @@ app.post('/api/product', async (req, res) => {
       newProduct.Unit || '',
       newProduct.Layers || '',
       newProduct.CartoonsPerLayer || '',
-      newProduct.TotalCartons || ''
     ]];
 
     if (lastRow === -1) {

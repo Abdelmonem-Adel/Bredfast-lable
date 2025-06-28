@@ -107,13 +107,14 @@ button:hover {
   font-size: 60px;
   font-weight: bold;
   text-align: center;
-  margin: 30px 0 20px 0;
+  margin: 20px 0 10px 0;
   letter-spacing: 2px;
 }
 
 .label-barcode-img {
+  
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 .label-product-name {
@@ -180,4 +181,33 @@ button:hover {
     width: 100vw;
     background: #fff;
   }
+}
+
+
+
+.big-date {
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0px 0;
+}
+
+.product-info-table, .details-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.product-info-table td, .details-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+.label-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0 10px;
 }

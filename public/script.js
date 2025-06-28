@@ -44,7 +44,8 @@ async function fetchProduct() {
     }
 
     resultDiv.innerHTML = `
-      <div class="label-paper">
+      
+  <div class="label-paper">
       <img src="logo.png" alt="Breadfast Logo" class="label-logo" />
         <div class="label-row header-row">
           <span>Internal Reference (ID)</span>
@@ -52,22 +53,27 @@ async function fetchProduct() {
         </div>
         <div class="label-barcode-number">${data.Barcode || '-'}</div>
         <div class="label-barcode-img">
-          <img src="https://barcode.tec-it.com/barcode.ashx?data=${data.Barcode || '-'}&Code39" alt="Barcode" />
+          <img src="https://barcode.tec-it.com/barcode.ashx?data=${data.Barcode || '-'}&Barcode 39" alt="Barcode" />
         </div>
         <div class="section-line"></div>
         <div class="label-product-name">${data.Name || '-'}</div>
+
         <div class="section-line"></div>
-        <div class="label-row">
-          <span>Product Category:</span>
-          <span>${data.Category || 'Food Cupboard'}</span>
-          <span>Shelf life by Months:</span>
-          <span>${shelfLifeMonths || '-'}</span>
-        </div>
+
+        <table class="product-info-table">
+  <tr>
+    <td>Product Category</td>
+    <td>${data.Category || '-'}</td>
+    <td>Shelf life by Months / مدة الصلاحية بالشهور</td>
+    <td>${shelfLifeMonths || '-'}</td>
+  </tr>
+</table>
+
         <div class="section-line"></div>
         <div class="label-row label-date-title">
           <span>Production Date / تاريخ الإنتاج (DD/MM/YYYY)</span>
         </div>
-        <div class="label-date-main">${productionDate ? formatCustomDate(productionDate) : '-'}</div>
+        <div class="big-date">${productionDate ? formatCustomDate(productionDate) : '-'}</div>
 
         <div class="section-line"></div>
 
@@ -76,25 +82,32 @@ async function fetchProduct() {
         </div>
 
         <div class="section-line"></div>
-        <div class="label-info-table2">
-          
-          <div>No. of Carton/Layer <br> عدد الكراتين بالرصة<br><br><b>${data.CartoonsPerLayer || '-'}</b></div>
-          <div>No. of Layers/Pallet <br> عدد الرصات علي البالته <br><br><b>${data.Layers || '-'}</b></div>
-          <div>No. of Carton/Pallet <br> الإجمالي بالكرتونة <br><br><b>${data.CartoonsPerPallet || '-'}</b></div>
-          <div>No. of units/Pallet <br> الإجمالي بالقطعة <br><br><b>${data.UnitsPerPallet || '-'}</b></div>
-        </div>
+        <table class="details-table">
+  <tr>
+    <td>No. of Carton/Layer<br>عدد الكراتين بالرصة</td>
+    <td>${data.CartoonsPerLayer || '-'}</td>
+    <td>No. of Layers/Pallet<br>عدد الرصات علي البالته</td>
+    <td>${data.Layers || '-'}</td>
+  </tr>
+  <tr>
+    <td>No. of Carton/Pallet<br>الإجمالي بالكرتونة</td>
+    <td>${data.CartoonsPerPallet || '-'}</td>
+    <td>No. of units/Pallet<br>الإجمالي بالقطعة</td>
+    <td>${data.UnitsPerPallet || '-'}</td>
+  </tr>
+</table>
+
         <div class="section-line"></div>
-        <div class="label-row label-date-title">
-          <span>Out of validation (OOV)</span>
-        </div>
-        <div class="label-date-main">${oovDate ? formatCustomDate(oovDate) : '-'}</div>
+      
+        <div class="label-title">Out of validation (OOV)</div>
+        <div class="big-date">${oovDate ? formatCustomDate(oovDate) : '-'}</div>
         <div class="section-line"></div>
-        <div class="label-row label-date-title">
-          <span>Expiration Date / تاريخ الإنتهاء (DD/MM/YYYY)</span>
-        </div>
-        <div class="label-date-main">${expirationDate ? formatCustomDate(expirationDate) : '-'}</div>
+        <div class="label-title">Expiration Date / تاريخ الإنتهاء (DD/MM/YYYY)</div>
+        <div class="big-date">${expirationDate ? formatCustomDate(expirationDate) : '-'}</div>
       </div>
+
     `;
+
     resultDiv.style.display = 'block';
 
     clearInputs()
