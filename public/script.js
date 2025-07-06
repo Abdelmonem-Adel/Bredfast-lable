@@ -53,7 +53,7 @@ async function fetchProduct() {
         </div>
         <div class="label-barcode-number">${data.Barcode || '-'}</div>
         <div class="label-barcode-img">
-          <img src="https://barcode.tec-it.com/barcode.ashx?data=${data.Barcode || '-'}&Barcode 39" alt="Barcode" />
+          <img src="https://bwipjs-api.metafloor.com/?bcid=code39&text=${data.Barcode || '-'}&scale=2&height=10" alt="Barcode" />
         </div>
         <div class="section-line"></div>
         <div class="label-product-name">${data.Name || '-'}</div>
